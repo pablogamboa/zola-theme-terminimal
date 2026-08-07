@@ -1,16 +1,16 @@
 # Terminimal
 
-[![Build Status](https://github.com/pawroman/zola-theme-terminimal/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/pawroman/zola-theme-terminimal/actions/workflows/pages/pages-build-deployment)
+[![Build Status](https://github.com/pablogamboa/zola-theme-terminimal/actions/workflows/publish-pages.yml/badge.svg)](https://github.com/pablogamboa/zola-theme-terminimal/actions/workflows/publish-pages.yml)
 ![No JavaScript](https://img.shields.io/badge/JavaScript-none-brightgreen.svg)
 
 ![Screenshot](../master/screenshot.png?raw=true)
 
 See the live demo (of the default configuration) here:
-https://pawroman.github.io/zola-theme-terminimal/
+https://pablogamboa.github.io/zola-theme-terminimal/
 
-Tested with Zola v0.19.2.
+Tested with Zola v0.23.x.
 
-Please note that earlier (and older) versions might not work because of breaking changes across Zola versions.
+This branch uses Tera 2 components and requires Zola v0.23.0 or newer.
 
 #### Fork disclaimer
 
@@ -30,7 +30,7 @@ be released.
 
 Starting from version v1.0.0, the project adopted [Semantic Versioning](https://semver.org/).
 
-Please check the [GitHub releases](https://github.com/pawroman/zola-theme-terminimal/releases) to see a change log
+Please check the [GitHub releases](https://github.com/pablogamboa/zola-theme-terminimal/releases) to see a change log
 and work out if there's any breaking changes.
 
 ## How to start
@@ -38,13 +38,13 @@ and work out if there's any breaking changes.
 Option A: clone the theme directly into your Zola site folder:
 
 ```
-$ git clone https://github.com/pawroman/zola-theme-terminimal.git themes/terminimal
+$ git clone https://github.com/pablogamboa/zola-theme-terminimal.git themes/terminimal
 ```
 
 Option B: include it as a git submodule (it's better if you plan to use CI builders):
 
 ```
-$ git submodule add https://github.com/pawroman/zola-theme-terminimal.git themes/terminimal
+$ git submodule add https://github.com/pablogamboa/zola-theme-terminimal.git themes/terminimal
 ```
 
 Then in your `config.toml` set:
@@ -59,9 +59,9 @@ compile_sass = true
 Also see the Zola documentation on using themes:
 https://www.getzola.org/documentation/themes/installing-and-using-themes/
 
-## Shortcodes
+## Components
 
-The theme adds two custom shortcodes related to image handling.
+The theme adds two Tera components related to image handling.
 
 ### `image`
 
@@ -80,8 +80,11 @@ Optional arguments:
 Example:
 
 ```
-{{ image(src="/img/hello.png", alt="Hello Friend",
-         position="left", style="border-radius: 8px;") }}
+{{ <terminimal.image config={config}
+     src="/img/hello.png"
+     alt="Hello Friend"
+     position="left"
+     style="border-radius: 8px;" /> }}
 ```
   
 ### `figure`
@@ -95,12 +98,12 @@ Same as `image`, but with a few extra optional arguments:
 Example:
 
 ```
-{{ figure(src="http://rustacean.net/assets/rustacean-flat-gesture.png",
-          style="width: 25%;",
-          position="right",
-          caption_position="left",
-          caption="**Ferris**, the (unofficial) Rust mascot",
-          caption_style="font-style: italic;") }}
+{{ <terminimal.figure src="http://rustacean.net/assets/rustacean-flat-gesture.png"
+     style="width: 25%;"
+     position="right"
+     caption_position="left"
+     caption="**Ferris**, the (unofficial) Rust mascot"
+     caption_style="font-style: italic;" /> }}
 ```
 
 ## OpenGraph
@@ -368,7 +371,7 @@ base template, `index.html`, create file like this in `templates/index.html`:
 ## How to contribute
 
 If you spot any bugs or wish to contribute new features, please create a new
-[Pull Request](https://github.com/pawroman/zola-theme-terminimal/pulls).
+[Pull Request](https://github.com/pablogamboa/zola-theme-terminimal/pulls).
 
 ## Changes compared to the original theme
 
@@ -413,7 +416,7 @@ This theme has been forked from https://github.com/panr/hugo-theme-terminal
 
 - 5 color themes, depending on your preference:
   blue (default), green, orange, pink, red.
-- The shortcodes `image` and `figure` (See [Shortcodes](#shortcodes)).
+- The `terminimal.image` and `terminimal.figure` components (See [Components](#components)).
 - Fully responsive.
 
 ## License

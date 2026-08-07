@@ -1,4 +1,4 @@
-{% macro content(page, summary, show_only_description) %}
+{% component terminimal.post_content(page, summary, show_only_description) %}
     {%- if show_only_description %}
         <div class="post-content">
             {{ page.description | safe }}
@@ -20,19 +20,19 @@
             {{ page.content | safe }}
         </div>
     {%- endif %}
-{% endmacro content %}
+{% endcomponent %}
 
 
-{% macro date(page) %}
+{% component terminimal.post_date(page) %}
     <span class="post-date">
         {%- if page.date %}
             {{ page.date | date(format="%Y-%m-%d") }}
         {% endif -%}
     </span>
-{% endmacro post_date %}
+{% endcomponent %}
 
 
-{% macro earlier_later(page) %}
+{% component terminimal.earlier_later(config, page) %}
     {%- if config.extra.enable_post_view_navigation %}
         {%- if page.lower or page.higher %}
             <div class="pagination">
@@ -61,20 +61,20 @@
             </div>
         {% endif -%}
     {% endif -%}
-{% endmacro earlier_later %}
+{% endcomponent %}
 
 
-{% macro header(page) %}
+{% component terminimal.post_header(page) %}
     <h1 class="post-title"><a href="{{ page.permalink | safe }}">{{ page.title }}</a></h1>
     <div class="post-meta-inline">
-        {{ post_macros::date(page=page) }}
+        {{ <terminimal.post_date page={page} /> }}
     </div>
 
-    {{ post_macros::tags(page=page) }}
-{% endmacro header %}
+    {{ <terminimal.post_tags page={page} /> }}
+{% endcomponent %}
 
 
-{% macro list_posts(pages) %}
+{% component terminimal.list_posts(pages) %}
     <ul>
     {%- for page in pages %}
         {%- if page.draft %}
@@ -84,14 +84,14 @@
             <a href="{{ page.permalink | safe }}">
                 <span class="post-date">{{ page.date }}</span>
                 :: <span class="post-list-title">{{ page.title }}</span></a>
-            {{ post_macros::tags(page=page, short=true) }}
+            {{ <terminimal.post_tags page={page} short={true} /> }}
         </li>
     {% endfor -%}
     </ul>
-{% endmacro list_posts %}
+{% endcomponent %}
 
 
-{% macro tags(page, short=false) %}
+{% component terminimal.post_tags(page, short=false) %}
     {%- if page.taxonomies and page.taxonomies.tags %}
         <span class="post-tags-inline">
             {%- if short %}
@@ -107,4 +107,4 @@
             {% endfor -%}
         </span>
     {% endif -%}
-{% endmacro tags %}
+{% endcomponent %}

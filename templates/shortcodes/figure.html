@@ -1,8 +1,10 @@
-{% if src %}
-  <figure class="{% if position %}{{ position }}{% else -%} center {%- endif %}" >
-    <img src="{{ src | safe }}"{% if alt %} alt="{{ alt }}"{% endif %}{% if style %} style="{{ style }}"{% endif %} decoding="async" loading="lazy"/>
-    {% if caption %}
-      <figcaption class="{% if caption_position %}{{ caption_position }}{% else -%} center {%- endif %}"{% if caption_style %} style="{{ caption_style | safe }}"{% endif %}>{{ caption | markdown() | safe }}</figcaption>
-    {% endif %}
-  </figure>
-{% endif %}
+{% component terminimal.figure(src=None, alt=None, position=None, style=None, caption=None, caption_position=None, caption_style=None) -%}
+{% if src -%}
+<figure class="{% if position %}{{ position }}{% else %}center{% endif %}">
+<img src="{{ src | safe }}"{% if alt %} alt="{{ alt }}"{% endif %}{% if style %} style="{{ style | safe }}"{% endif %} decoding="async" loading="lazy"/>
+{% if caption -%}
+<figcaption class="{% if caption_position %}{{ caption_position }}{% else %}center{% endif %}"{% if caption_style %} style="{{ caption_style | safe }}"{% endif %}>{{ caption | markdown(inline=true) | safe }}</figcaption>
+{% endif -%}
+</figure>
+{% endif -%}
+{% endcomponent %}

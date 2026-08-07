@@ -68,34 +68,40 @@ This is where the post summary ends.
 
 The second part follows here.
 
-## Shortcodes
+## Components
 
-`figure` shortcode:
+`terminimal.figure` component:
 
 ```
-figure(src="http://rustacean.net/assets/rustacean-flat-gesture.png",
-       style="width: 25%;",
-       position="center",
-       caption_position="left",
-       caption="**Ferris**, the (unofficial) Rust mascot",
-       caption_style="font-weight: bold; font-style: italic;")
+{% raw %}
+{{ <terminimal.figure src="http://rustacean.net/assets/rustacean-flat-gesture.png"
+     style="width: 25%;"
+     position="center"
+     caption_position="left"
+     caption="**Ferris**, the (unofficial) Rust mascot"
+     caption_style="font-weight: bold; font-style: italic;" /> }}
+{% endraw %}
 ```
 
-{{ figure(src="http://rustacean.net/assets/rustacean-flat-gesture.png",
-          style="width: 25%;",
-          position="center",
-          caption_position="left",
-          caption="**Ferris**, the (unofficial) Rust mascot",
-          caption_style="font-style: italic;") }}
+{{ <terminimal.figure src="http://rustacean.net/assets/rustacean-flat-gesture.png"
+     style="width: 25%;"
+     position="center"
+     caption_position="left"
+     caption="**Ferris**, the (unofficial) Rust mascot"
+     caption_style="font-style: italic;" /> }}
 
 ---
 
-`image` shortcode:
+`terminimal.image` component:
 
 ```
-image(src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg",
-      position="left")
+{% raw %}
+{{ <terminimal.image config={config}
+     src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg"
+     position="left" /> }}
+{% endraw %}
 ```
 
-{{ image(src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg",
-         position="left") }}
+{{ <terminimal.image config={config}
+     src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg"
+     position="left" /> }}
